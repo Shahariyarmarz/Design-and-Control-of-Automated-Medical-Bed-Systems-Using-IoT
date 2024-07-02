@@ -1,0 +1,322 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,  shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <meta http-equiv="refresh" content="5">
+    <title> Robotics Medical Hospital </title>
+    <!--<link rel="stylesheet" href="medical.css">-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/simple-line-icons/css/simple-line-icons.css' %}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+
+    <!--custom css -->
+    <link href="{% static 'css/medical.css' %}" rel="stylesheet">
+
+
+    
+
+
+</head>
+<body>
+
+    <h1>Automated Medical System</h1>
+
+
+    <!--Nav Bar -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">RME</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" href="http://192.168.0.100:8000/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contact/">Contact</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Dropdown
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+              </li>
+            </ul>
+            <form class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>    
+      </nav>
+
+     
+      <!--Nav Bar End-->
+      <!--Button Code Start-->
+
+    <div class="backgroundimage" style="background-image: url('{% static "img/i.jpg" %}');">
+
+      <!--Emergency Block Start-->
+      <div class="Emergency" method="GET">
+        Emergency <br>
+        <br>   
+        <!--Emergency Block Loop-->       
+        {% for i in emergency %}
+        <input type="button" id="{{i.Robot}}" onclick="{{i.Robot}}(1)" value={{i.Robot}}  > <br>
+        <script type="text/javascript">
+          var btn;
+          function {{i.Robot}}(btn)
+                {
+                  var btn1 = document.getElementById("{{i.Robot}}");
+                  if (btn==0){
+                    document.getElementById("{{i.Robot}}").disabled = false;
+                    document.getElementById("{{i.Robot}}").style.background="rgb(48, 192, 197)";
+                    btn1.value=i.Robot;
+                  }
+                  else if (btn==1){
+                    btn1.value="Busy";
+                    document.getElementById("{{i.Robot}}").style.background="red";
+                    document.getElementById("{{i.Robot}}").disabled = true;
+                  }
+                }
+          </script>
+        {% endfor %}        
+    </div>
+    <!--Emergency Block End-->
+
+
+
+        <!--Emergency Queue Block Start-->
+        <div class="EmergencyQueue">
+            Emergency Queue<br>
+            <br>
+            <!--Emergency Queue Block Loop-->
+            {% for i in emergency_queue %}
+            <input type="button" id="{{i.Robot}}" onclick="{{i.Robot}}(1)" value={{i.Robot}}  > <br>
+            <script type="text/javascript">
+                var btn;
+                function {{i.Robot}}(btn)
+                {
+        
+                    var btn1 = document.getElementById("{{i.Robot}}");
+                    if (btn===0){
+                            document.getElementById("{{i.Robot}}").disabled = false;
+                            document.getElementById("{{i.Robot}}").style.background="rgb(48, 192, 197)";
+                            btn1.value="{{i.Robot}}"
+        
+                    }
+                    else if (btn===1){
+                            btn1.value="Busy";
+                            document.getElementById("{{i.Robot}}").style.background="red";
+                            document.getElementById("{{i.Robot}}").disabled = true;
+            
+                    }
+                }
+            </script>
+            {% endfor %}
+        </div>
+        <!--Emergency Queue Block End-->
+
+
+
+        <!--Cabin_1 Block Start-->
+        <div class="Cabin1">
+            Cabin 1<br>
+            <br>
+            <!--Cabin_1 Block Loop-->
+            {% for i in cabin1 %}
+            <input type="button" id="{{i.Robot}}" onclick="{{i.Robot}}(1)" value={{i.Robot}}  > <br>
+            <script type="text/javascript">
+                var btn;
+                function {{i.Robot}}(btn)
+                {
+        
+                    var btn1 = document.getElementById("{{i.Robot}}");
+                    if (btn===0){
+                            document.getElementById("{{i.Robot}}").disabled = false;
+                            document.getElementById("{{i.Robot}}").style.background="rgb(48, 192, 197)";
+                            btn1.value="{{i.Robot}}"
+        
+                    }
+                    else if (btn===1){
+                            btn1.value="Busy";
+                            document.getElementById("{{i.Robot}}").style.background="red";
+                            document.getElementById("{{i.Robot}}").disabled = true;
+            
+                    }
+                }
+            </script>
+            {% endfor %}
+        </div>
+        <!--Cabin_1 Block End-->
+
+
+
+        <!--Cabin_2 Block Start-->  
+        <div class="Cabin2">
+            Cabin 2<br>
+            <br>
+            <!--Cabin_1 Block Loop-->
+            {% for i in cabin2 %}
+            <input type="button" id="{{i.Robot}}" onclick="{{i.Robot}}(1)" value={{i.Robot}}  > <br>
+            <script type="text/javascript">
+                var btn;
+                function {{i.Robot}}(btn)
+                {
+        
+                    var btn1 = document.getElementById("{{i.Robot}}");
+                    if (btn===0){
+                            document.getElementById("{{i.Robot}}").disabled = false;
+                            document.getElementById("{{i.Robot}}").style.background="rgb(48, 192, 197)";
+                            btn1.value="{{i.Robot}}"
+        
+                    }
+                    else if (btn===1){
+                            btn1.value="Busy";
+                            document.getElementById("{{i.Robot}}").style.background="red";
+                            document.getElementById("{{i.Robot}}").disabled = true;
+            
+                    }
+                }
+            </script>
+            {% endfor %}
+        </div>
+        <!--Cabin_2 Block End-->
+
+
+
+        <!--OT_1 Block Start-->   
+        <div class="ot1">
+            OT-1 <br>
+            <br>
+            <!--OT_1 Block Loop-->
+            {% for i in OT1 %}
+            <input type="button" id="{{i.Robot}}" onclick="{{i.Robot}}(1)" value={{i.Robot}}  > <br>
+
+
+
+            <script type="text/javascript">
+                var btn;
+
+
+                function {{i.Robot}}(btn)
+                {
+        
+                    var btn1 = document.getElementById("{{i.Robot}}");
+                    if (btn===0){
+                            document.getElementById("{{i.Robot}}").disabled = false;
+                            document.getElementById("{{i.Robot}}").style.background="rgb(48, 192, 197)";
+                            btn1.value="{{i.Robot}}"
+        
+                    }
+                    else if (btn===1){
+                            btn1.value="Busy";
+                            document.getElementById("{{i.Robot}}").style.background="red";
+                            document.getElementById("{{i.Robot}}").disabled = true;
+            
+                    }
+                }
+            </script>
+            {% endfor %}
+        </div>
+        <!--OT_1 Block End-->
+
+
+
+        <!--OT_2 Block Start-->    
+        <div class="ot2">
+            OT-2 <br>
+            <br>
+
+            <!--OT_2 Block Loop-->
+            {% for i in OT2 %}
+            <input type="button" id="{{i.Robot}}" onclick="{{i.Robot}}(1)" value={{i.Robot}}  > <br>
+            <script type="text/javascript">
+                var btn;
+
+                function {{i.Robot}}(btn)
+                {
+        
+                    var btn1 = document.getElementById("{{i.Robot}}");
+                    if (btn===0){
+                            document.getElementById("{{i.Robot}}").disabled = false;
+                            document.getElementById("{{i.Robot}}").style.background="rgb(48, 192, 197)";
+                            btn1.value="{{i.Robot}}"
+        
+                    }
+                    else if (btn===1){
+                            btn1.value="Busy";
+                            document.getElementById("{{i.Robot}}").style.background="red";
+                            document.getElementById("{{i.Robot}}").disabled = true;
+            
+                    }
+                }
+            </script>
+            {% endfor %}
+        </div>
+        <!--OT_2 Block End-->
+
+    </div>
+
+
+
+
+
+
+    <!--Window onload function start-->
+    {% for i in database %}
+      <script type="text/javascript">
+        
+          var btn;
+          function {{i.Robot}}(btn)
+          {
+  
+              var btn1 = document.getElementById("{{i.Robot}}");
+              if (btn===0){
+                      document.getElementById("{{i.Robot}}").disabled = false;
+                      //document.getElementById("{{i.Robot}}").style.background="rgb(48, 192, 197)";
+                      btn1.value="{{i.Robot}}"
+  
+              }
+              else if (btn===1){
+                      btn1.value="Busy";
+                      document.getElementById("{{i.Robot}}").style.background="red";
+                      document.getElementById("{{i.Robot}}").disabled = true;
+      
+              }
+          }
+          window.onload={{i.Robot}}({{i.Value}});
+      </script>
+      {% endfor %}
+      <!--Window onload function end-->
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+
+
+</html>
